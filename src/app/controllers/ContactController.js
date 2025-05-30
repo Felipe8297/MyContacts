@@ -3,17 +3,16 @@ const ContactsRepository = require('../repositories/ContactsRepository');
 // Listar todos os contatos
 
 class ContactController {
+  async index(request, response) {
+    const { orderBy } = request.query;
 
-  async index(response) {
-    const contacts = await ContactsRepository.findAll();
-
+    const contacts = await ContactsRepository.findAll(orderBy);
     response.json(contacts);
   }
 
   // Listar um contato
 
   async show(request, response) {
-
     const { id } = request.params;
 
     const contact = await ContactsRepository.findById(id);
@@ -26,7 +25,6 @@ class ContactController {
   }
 
   async store(request, response) {
-
     const { name, email, phone, category_id } = request.body;
 
     if (!name) {
@@ -54,7 +52,6 @@ class ContactController {
   // Atualizar um contato
 
   async update(request, response) {
-
     const { id } = request.params;
 
     const { name, email, phone, category_id } = request.body;
@@ -90,7 +87,6 @@ class ContactController {
   // Deletar um contato
 
   async delete(request, response) {
-
     const { id } = request.params;
 
     const contact = await ContactsRepository.findById(id);
@@ -106,4 +102,3 @@ class ContactController {
 
 // Singleton
 module.exports = new ContactController();
-
