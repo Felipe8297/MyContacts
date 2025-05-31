@@ -1,23 +1,4 @@
-const { randomUUID } = require('node:crypto');
-
 const db = require('../../database');
-
-const contacts = [
-  {
-    id: randomUUID(),
-    name: 'John Doe',
-    email: 'johndoe@test.com',
-    phone: '123456789',
-    category_id: randomUUID(),
-  },
-  {
-    id: randomUUID(),
-    name: 'John Doe 2',
-    email: 'johndoe@test.com',
-    phone: '123456789',
-    category_id: randomUUID(),
-  },
-];
 
 class ContactsRepository {
   async findAll(orderBy = 'ASC') {
