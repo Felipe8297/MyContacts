@@ -73,7 +73,7 @@ class CategoryController {
       return response.status(500).json({ error: 'Error deleting category' });
     }
 
-    response.json(deletedCategory);
+    response.sendStatus(204);
   }
 }
 

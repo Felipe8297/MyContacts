@@ -14,11 +14,13 @@ class CategoryRepository {
     return row;
   }
 
-  async findAll() {
+  async findAll(orderBy = 'ASC') {
+    const direction = orderBy.toUpperCase() === 'DESC' ? 'DESC' : 'ASC';
+
     const rows = await db.query(
       `
       SELECT * FROM categories
-      ORDER BY name
+      ORDER BY name ${direction}
       `,
     );
 
