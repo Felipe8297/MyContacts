@@ -1,4 +1,4 @@
-const handler = (error, request, response, next) => {
+const errorHandler = (error, request, response, next) => {
   if (error instanceof SyntaxError && error.status === 400 && 'body' in error) {
     return response.status(400).json({ error: 'Invalid JSON payload' });
   }
@@ -15,4 +15,4 @@ const handler = (error, request, response, next) => {
   return response.status(500).json({ error: 'Internal Server Error' });
 };
 
-module.exports = handler;
+module.exports = errorHandler;
